@@ -4,3 +4,12 @@ docker_volume_netshare_location: /opt/bin
 docker_volume_netshare_filename: docker-volume-netshare
 docker_volume_netshare_location_mode: 0755
 docker_volume_netshare_file_mode: a+x
+
+docker_volume_netshare_run_as_service: no
+docker_volume_netshare_service_file_location: /etc/systemd/system
+docker_volume_netshare_type: nfs
+docker_volume_netshare_params: ""
+docker_volume_netshare_types:
+  - "nfs"
+  - "efs"
+  - "cifs"

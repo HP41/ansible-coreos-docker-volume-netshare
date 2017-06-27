@@ -1,0 +1,11 @@
+[Unit]
+Description=Start docker-volume-netshare {{ docker_volume_netshare_type }} plugin
+After={% if docker_volume_netshare_type == "nfs" %}rpc-statd{% endif %} docker.service
+Requires={% if docker_volume_netshare_type == "nfs" %}rpc-statd{% endif %} docker.service
+
+[Service]
+Type=simple
+ExecStart=/opt/bin/docker-volume-netshare {{ docker_volume_netshare_type }} {% if docker_volume_netshare_params|default("") != "" %}{{ docker_volume_netshare_params }}{% endif %}
+
+[Install]
+WantedBy=multi-user.target

@@ -11,3 +11,7 @@
     dest: "{{docker_volume_netshare_location}}/{{docker_volume_netshare_filename}}"
     mode: "{{docker_volume_netshare_file_mode}}"
     force: yes
+
+- name: Include run_as_service.yml if defined
+  include: run_as_service.yml
+  when: docker_volume_netshare_run_as_service

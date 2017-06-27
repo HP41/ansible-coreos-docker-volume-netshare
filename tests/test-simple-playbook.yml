@@ -2,5 +2,9 @@
 - hosts: localhost
   remote_user: root
 
+  vars:
+    docker_volume_netshare_run_as_service: yes
+    docker_volume_netshare_type: nfs
+
   roles:
     - ansible-coreos-docker-volume-netshare
