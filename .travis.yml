@@ -9,6 +9,7 @@ matrix:
     - os: linux
       sudo: required
       dist: trusty
+      group: deprecated-2017Q2
 
 env:
   - SITE=test-simple-playbook.yml
