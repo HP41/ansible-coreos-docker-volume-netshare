@@ -1,0 +1,40 @@
+---
+language: python
+python: "2.7"
+sudo: required
+dist: precise
+
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      dist: trusty
+
+env:
+  - SITE=test-simple-playbook.yml
+
+before_install:
+  - sudo apt-get -y -qq update
+  - sudo apt-get -y -qq install aptitude
+
+install:
+  # Install Ansible.
+  - yes | pip install ansible
+ 
+  # Add ansible.cfg to pick up roles path.
+  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
+
+script:
+  # Check the role/playbook's syntax.
+  - ansible-playbook -i tests/inventory tests/$SITE --syntax-check
+
+  # Run the role/playbook with ansible-playbook.
+  - script -q -c "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo -vvvv" output.txt
+
+  - >
+    grep -q 'failed=0' output.txt
+    && (echo 'Role run: pass' && exit 0) 
+    || (echo 'Role run: fail' && exit 1)
+    
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

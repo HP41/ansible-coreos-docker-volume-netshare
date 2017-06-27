@@ -1,0 +1,13 @@
+---
+- name: Create {{docker_volume_netshare_location}} before downloading docker-volume-netshare
+  file:
+    path: "{{docker_volume_netshare_location}}"
+    state: directory
+    mode: "{{docker_volume_netshare_location_mode}}"
+
+- name: Download docker-volume-netshare
+  get_url:
+    url: "{{docker_volume_netshare_download_url}}"
+    dest: "{{docker_volume_netshare_location}}/{{docker_volume_netshare_filename}}"
+    mode: "{{docker_volume_netshare_file_mode}}"
+    force: yes

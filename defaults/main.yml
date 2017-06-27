@@ -1,0 +1,6 @@
+---
+docker_volume_netshare_download_url: https://github.com/ContainX/docker-volume-netshare/releases/download/v0.34/docker-volume-netshare_0.34_linux_amd64-bin
+docker_volume_netshare_location: /opt/bin
+docker_volume_netshare_filename: docker-volume-netshare
+docker_volume_netshare_location_mode: 0755
+docker_volume_netshare_file_mode: a+x

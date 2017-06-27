@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Hitesh Prabhakar
+  description: Ansible role to install docker-volume-netshare to an already python bootstrapped CoreOS machine.
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+    - name: CoreOS
+
+  galaxy_tags:
+    - docker
+    - coreos
+    - volumes
+    - nfs
+    - samba
+    - efs
+
+dependencies: []
