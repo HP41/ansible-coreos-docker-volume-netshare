@@ -4,10 +4,16 @@
     msg: "{{ docker_volume_netshare_type }} isn't a valid plugin type for docker-volume-netshare. Please use one of the following: {{ docker_volume_netshare_types }}"
   when: docker_volume_netshare_type not in docker_volume_netshare_types
 
-- name: Copying over docker-volume-netshare-{{ docker_volume_netshare_type }}.service using docker-volume-netshare.j2 template
+- name: Copying over docker-volume-netshare-{{ docker_volume_netshare_type }}.service using docker-volume-netshare.service.j2 template
   template:
-    src: "docker-volume-netshare.j2"
+    src: "{{ docker_volume_netshare_systemd_unit_template }}"
     dest: "{{docker_volume_netshare_service_file_location}}/docker-volume-netshare-{{ docker_volume_netshare_type }}.service"
     owner: root
     group: root
     mode: 0644
+
+- name: Starting service
+  systemd:
+    daemon_reload: yes
+    name: docker-volume-netshare-{{ docker_volume_netshare_type }}
+    state: restarted

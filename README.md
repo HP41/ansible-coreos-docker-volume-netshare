@@ -27,3 +27,4 @@
 * `docker_volume_netshare_type`: The plugin type to run in the backgrouond if you chose to do so - Default=`nfs`
 * `docker_volume_netshare_params`: Any parameters or arguments to pass along to the plugin. Please check the [original docker-volume-netshare repo](https://github.com/ContainX/docker-volume-netshare) on how this can be useful - Default=``
 * `docker_volume_netshare_types`: **List** of different plugin types, please refer to the [original docker-volume-netshare repo](https://github.com/ContainX/docker-volume-netshare) for more info - Default=`nfs, efs, cifs`
+* `docker_volume_netshare_nfs_spec_file_location`: The location where to place nfs.spec file for NFS to work as expected, pelase refer to this [link](https://github.com/ContainX/docker-volume-netshare/issues?utf8=%E2%9C%93&q=nfs.spec) on why it might be needed. Override this with an empty value if it isn't needed - Default=`/etc/docker/plugins`

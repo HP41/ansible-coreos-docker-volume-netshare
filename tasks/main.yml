@@ -12,6 +12,15 @@
     mode: "{{docker_volume_netshare_file_mode}}"
     force: yes
 
+- name: Add nfs.spec when plugin type = nfs
+  template:
+    src: "{{ docker_volume_netshare_nfs_spec_template }}"
+    dest: "{{docker_volume_netshare_nfs_spec_file_location}}/nfs.spec"
+    owner: root
+    group: root
+    mode: 0644
+  when: docker_volume_netshare_nfs_spec_file_location|default("") != ""
+
 - name: Include run_as_service.yml if defined
-  include: run_as_service.yml
-  when: docker_volume_netshare_run_as_service
+  include: create_systemd_unit.yml
+  when: (docker_volume_netshare_systemd_unit) and (ansible_service_mgr == "systemd")
